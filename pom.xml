@@ -1,22 +1,36 @@
+<!-- Root element of the Project Object Model (POM), defining the XML namespace and schema instance -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!-- Specifies the version of the POM model used by Maven (currently 4.0.0) -->
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- The group ID identifies the project's organization (usually reversed domain name) -->
     <groupId>com.banking</groupId>
+    <!-- The artifact ID is the name of the jar file (without version) -->
     <artifactId>simple-banking-system</artifactId>
+    <!-- The version of the project (SNAPSHOT indicates it is under development) -->
     <version>1.0-SNAPSHOT</version>
 
+    <!-- Properties section to define variables used in the POM -->
     <properties>
+        <!-- specificies the Java version for the source code -->
         <maven.compiler.source>17</maven.compiler.source>
+        <!-- Specificies the target Java version for the compiled bytecode -->
         <maven.compiler.target>17</maven.compiler.target>
+        <!-- Sets the encoding for source files to UTF-8 to ensure cross-platform compatibility -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <!-- Section to define the libraries that the project depends on -->
     <dependencies>
+        <!-- Dependency definition for the H2 Database -->
         <dependency>
+            <!-- The group ID for the H2 database library -->
             <groupId>com.h2database</groupId>
+            <!-- The artifact ID for the H2 database library -->
             <artifactId>h2</artifactId>
+            <!-- The specific version of the H2 database to use -->
             <version>2.2.224</version>
         </dependency>
     </dependencies>
