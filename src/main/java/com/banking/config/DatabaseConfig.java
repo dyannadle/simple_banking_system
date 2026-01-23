@@ -3,12 +3,17 @@ package com.banking.config;
 
 // Imports necessary JDBC classes for database connectivity
 import java.sql.Connection;
+// Imports DriverManager to manage database drivers
 import java.sql.DriverManager;
+// Imports SQLException to handle database access errors
 import java.sql.SQLException;
+// Imports Statement to execute simple SQL queries
 import java.sql.Statement;
 // Imports classes for file I/O operations
 import java.io.IOException;
+// Imports Files helper class for file operations
 import java.nio.file.Files;
+// Imports Paths helper class for handling file paths
 import java.nio.file.Paths;
 
 // Class responsible for database configuration and initialization
@@ -16,7 +21,6 @@ public class DatabaseConfig {
     // JDBC URL for the H2 database.
     // ./banking_db specifies the file path.
     // DB_CLOSE_DELAY=-1 keeps the database open even if the last connection closes
-    // (useful for some modes).
     private static final String URL = "jdbc:h2:./banking_db;DB_CLOSE_DELAY=-1";
     // Default username for H2 database
     private static final String USER = "sa";
@@ -36,6 +40,7 @@ public class DatabaseConfig {
         // Try-with-resources block ensures Connection and Statement are closed
         // automatically
         try (Connection conn = getConnection();
+                // Create a Statement object for sending SQL statements to the database
                 Statement stmt = conn.createStatement()) {
 
             // Reads all bytes from the schema.sql file and converts them to a String

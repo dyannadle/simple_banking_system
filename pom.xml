@@ -33,5 +33,27 @@
             <!-- The specific version of the H2 database to use -->
             <version>2.2.224</version>
         </dependency>
+        <!-- JUnit 5 dependency for testing framework -->
+        <dependency>
+            <!-- The group ID for the JUnit Jupiter API -->
+            <groupId>org.junit.jupiter</groupId>
+            <!-- The artifact ID for the JUnit Jupiter API -->
+            <artifactId>junit-jupiter-api</artifactId>
+            <!-- The version of JUnit 5 to use -->
+            <version>5.9.2</version>
+            <!-- Scope 'test' indicates this dependency is only available for compiling and running tests, not for the main application -->
+            <scope>test</scope>
+        </dependency>
+        <!-- JUnit 5 Runtime Engine to execute the tests -->
+        <dependency>
+            <!-- The group ID for the JUnit Jupiter Engine -->
+            <groupId>org.junit.jupiter</groupId>
+            <!-- The artifact ID for the JUnit Jupiter Engine -->
+            <artifactId>junit-jupiter-engine</artifactId>
+            <!-- The version of the JUnit Engine, should match the API version -->
+            <version>5.9.2</version>
+            <!-- Scope 'test' for test execution only -->
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>

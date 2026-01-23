@@ -22,7 +22,7 @@ public class AccountDAO {
     // Returns the auto-generated account ID
     public int createAccount(Account account) throws SQLException {
         // SQL query to insert account details. '?' are placeholders for values.
-        String sql = "INSERT INTO accounts (account_holder_name, balance) VALUES (?, ?)";
+        String sql = "INSERT INTO accounts (account_holder_name, balance, pin) VALUES (?, ?, ?)";
 
         // Try-with-resources to manage database connection and statement
         // Statement.RETURN_GENERATED_KEYS allows us to retrieve the new ID
@@ -33,17 +33,21 @@ public class AccountDAO {
             pstmt.setString(1, account.getAccountHolderName());
             // Set the second parameter (initial balance)
             pstmt.setBigDecimal(2, account.getBalance());
+            // Set the third parameter (PIN)
+            pstmt.setString(3, account.getPin());
 
             // Execute the update. Returns the number of rows affected.
             int affectedRows = pstmt.executeUpdate();
 
             // If no rows were affected, the insertion failed
             if (affectedRows == 0) {
+                // Throw exception indicating failure
                 throw new SQLException("Creating account failed, no rows affected.");
             }
 
             // Retrieve the generated keys (the new account ID)
             try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                // Check if a key was returned
                 if (generatedKeys.next()) {
                     // Return the first column of the result set (the ID)
                     return generatedKeys.getInt(1);
@@ -73,9 +77,14 @@ public class AccountDAO {
                 if (rs.next()) {
                     // Create and return a new Account object from the result set data
                     return new Account(
+                            // Get account number from result set
                             rs.getInt("account_number"),
+                            // Get account holder name from result set
                             rs.getString("account_holder_name"),
-                            rs.getBigDecimal("balance"));
+                            // Get balance from result set
+                            rs.getBigDecimal("balance"),
+                            // Get PIN from result set
+                            rs.getString("pin"));
                 }
             }
         }

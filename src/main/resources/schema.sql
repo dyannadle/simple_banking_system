@@ -5,7 +5,9 @@ CREATE TABLE IF NOT EXISTS accounts (
     -- Name of the account holder, cannot be null
     account_holder_name VARCHAR(255) NOT NULL,
     -- Balance of the account, defaults to 0.00. DECIMAL(15, 2) stores up to 15 digits, 2 after decimal
-    balance DECIMAL(15, 2) DEFAULT 0.00
+    balance DECIMAL(15, 2) DEFAULT 0.00,
+    -- Security PIN for the account (stored as plain text for simplicity in this exercise)
+    pin VARCHAR(4)
 );
 
 -- Create the 'transactions' table if it doesn't already exist

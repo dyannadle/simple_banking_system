@@ -27,9 +27,12 @@ public class TransactionDAO {
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
             // Set parameters from the transaction object
-            pstmt.setInt(1, transaction.getAccountNumber()); // Account ID
-            pstmt.setString(2, transaction.getType()); // Type (DEPOSIT/WITHDRAW)
-            pstmt.setBigDecimal(3, transaction.getAmount()); // Amount involved
+            // Set Account ID
+            pstmt.setInt(1, transaction.getAccountNumber());
+            // Set Type (DEPOSIT/WITHDRAW)
+            pstmt.setString(2, transaction.getType());
+            // Set Amount involved
+            pstmt.setBigDecimal(3, transaction.getAmount());
 
             // Execute the insertion
             pstmt.executeUpdate();
@@ -57,10 +60,15 @@ public class TransactionDAO {
                 while (rs.next()) {
                     // Create a Transaction object for each row and add it to the list
                     history.add(new Transaction(
+                            // Get transaction ID
                             rs.getInt("transaction_id"),
+                            // Get account number
                             rs.getInt("account_number"),
+                            // Get type
                             rs.getString("type"),
+                            // Get amount
                             rs.getBigDecimal("amount"),
+                            // Get timestamp
                             rs.getTimestamp("timestamp")));
                 }
             }
